@@ -5,11 +5,11 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
- * @description: 文件复制
+ * @description: 去掉缓冲区
  * @author: zhangshancheng
  **/
-public class ChannelTest {
-    public  static void main(String[] args) throws FileNotFoundException {
+public class ChannelTest2 {
+    public  static void main(String[] args) throws IOException {
         RandomAccessFile afile = new RandomAccessFile("/E:/object/IPLib.acl","rw");
         FileChannel inChannel = afile.getChannel();
 
@@ -20,21 +20,8 @@ public class ChannelTest {
         int pos = 0;
         int count = 0;
         long start = System.currentTimeMillis();
-        while(true){
-            count++;
-            try {
-                if ((inChannel.read(allocate))!=-1) {
-                    allocate.flip();
-                    outChannel.write(allocate);
-                    allocate.clear();
-                }else {
-                    break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
+        long size = inChannel.size();
+        outChannel.transferFrom(inChannel,0,size);
         System.out.println(count);
         System.out.println(System.currentTimeMillis()-start+"ms");
 
