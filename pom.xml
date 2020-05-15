@@ -11,7 +11,7 @@
         <fasterxml.jackson.version>2.6.3</fasterxml.jackson.version>
         <druid.client.version>0.8.3</druid.client.version>
         <spring.version>4.2.2.RELEASE</spring.version>
-        <jackson.version>2.9.8</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <scala.version>2.11.12</scala.version>
     </properties>
 
